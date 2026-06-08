@@ -57,13 +57,14 @@ both_visits <- each_visit %>%
               names_glue = '{.value}_{visitnum}',
               values_from = c(plasma_fire)) %>%
   mutate(visits_timing = case_when(
-    plasma_fire_2 == 'before' & plasma_fire_4 == 'before' ~ 't2 & t4 before',
-    plasma_fire_2 == 'before' & plasma_fire_4 == 'during' ~ 't2 before, t4 during',
-    plasma_fire_2 == 'before' & plasma_fire_4 == 'after' ~ 't2 before, t4 after',
-    plasma_fire_2 == 'during' & plasma_fire_4 == 'after' ~ 't2 during, t4 after',
-    plasma_fire_2 == 'after' & plasma_fire_4 == 'after' ~ 't2 & t4 after',
-    plasma_fire_2 == 'missing' | is.na(plasma_fire_2) | plasma_fire_4 == 'missing' | is.na(plasma_fire_4) ~ 'missing visit(s)'
-  )) %>%
+    plasma_fire_2 == 'before' & plasma_fire_4 == 'before' ~ 1,#'t2 & t4 before'
+    plasma_fire_2 == 'before' & plasma_fire_4 == 'during' ~ 2,#'t2 before, t4 during'
+    plasma_fire_2 == 'before' & plasma_fire_4 == 'after' ~ 3,#'t2 before, t4 after'
+    plasma_fire_2 == 'during' & plasma_fire_4 == 'after' ~ 4,#'t2 during, t4 after'
+    plasma_fire_2 == 'after' & plasma_fire_4 == 'after' ~ 5,#'t2 & t4 after'
+    plasma_fire_2 == 'missing' | is.na(plasma_fire_2) | plasma_fire_4 == 'missing' | is.na(plasma_fire_4) ~ 6#'missing visits'
+    ),
+    visits_timing = as.factor(visits_timing)) %>%
   # keep only vars of interest for joining downstream
   select(pearls_id, visits_timing)
 
