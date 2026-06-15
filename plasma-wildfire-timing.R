@@ -1,6 +1,6 @@
 ### Author: Selene Banuelos
 ### Date: 6/3/2026
-### Description: Identify which partiicipants had biospecimen collected before,
+### Description: Identify which partiicipants had plasma collected before,
 ### during, and after the Camp fire that lasted from 11/08/2018-11/25/2018
 
 # setup
