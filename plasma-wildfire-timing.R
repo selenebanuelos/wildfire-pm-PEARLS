@@ -80,4 +80,4 @@ table(both_visits$visits_timing)
   
 # output
 ################################################################################
-write.csv(final, 'data-processed/campfire-visit-timing.csv', row.names = F)
+write.csv(final, 'data-processed/plasma-campfire-visit-timing.csv', row.names = F)
